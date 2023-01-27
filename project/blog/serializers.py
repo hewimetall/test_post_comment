@@ -7,7 +7,7 @@ class PostSerializer(serializers.ModelSerializer):
     comment = serializers.SerializerMethodField()
     class Meta:
         model = Post
-        fields = ['id', 'title', 'text', 'created']
+        fields = ['id', 'title', 'text', 'created','comment']
         
     def get_comment(self, obj):
-        return obj.comment.values('id', 'text').last()
+        return obj.comments.values('id', 'text').last()
